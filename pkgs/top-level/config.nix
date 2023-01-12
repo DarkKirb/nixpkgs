@@ -103,7 +103,7 @@ let
 
     allowUnsupportedSystem = mkOption {
       type = types.bool;
-      default = false;
+      default = true;
       # getEnv part is in check-meta.nix
       defaultText = literalExpression ''false || builtins.getEnv "NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM" == "1"'';
       description = lib.mdDoc ''
