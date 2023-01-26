@@ -163,10 +163,8 @@ let
 , ... } @ attrs:
 
 let
-  # TODO(@oxij, @Ericson2314): This is here to keep the old semantics, remove when
-  # no package has `doCheck = true`.
-  doCheck' = doCheck && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
-  doInstallCheck' = doInstallCheck && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
+  doCheck' = config.doCheckByDefault && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
+  doInstallCheck' = config.doCheckByDefault && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
 
   separateDebugInfo' = separateDebugInfo && stdenv.hostPlatform.isLinux && !(stdenv.hostPlatform.useLLVM or false);
   outputs' = outputs ++ lib.optional separateDebugInfo' "debug";
