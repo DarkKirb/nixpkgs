@@ -91,6 +91,8 @@ let
         znver3         = versionAtLeast ccVersion "11.0";
         # ARM
         # TODO: Fill in as needed
+        # RISCV
+        # TODO: Fill in as needed
       }.${arch} or true
     else if isClang then
       { # Intel
@@ -102,6 +104,8 @@ let
         znver1         = versionAtLeast ccVersion "4.0";
         znver2         = versionAtLeast ccVersion "9.0";
         # AMD
+        # TODO: Fill in as needed
+        # RISCV
         # TODO: Fill in as needed
       }.${arch} or true
     else

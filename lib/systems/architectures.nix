@@ -47,6 +47,9 @@ rec {
     "armv9.3-a"    = [ "mops" ] ++ features."armv9.2-a";
     mips32         = [ ];
     loongson2f     = [ ];
+    riscv64-g      = [ "multiply" "atomic" "float" "double" "csr" "ifencei" ];
+    riscv64-gc     = [ "compressed" ] ++ features.riscv64-g;
+    riscv64-gcv    = [ "vector" ] ++ features.riscv64-gc;
   };
 
   # a superior CPU has all the features of an inferior and is able to build and test code for it
@@ -111,6 +114,9 @@ rec {
     "armv9.3-a"    = [ "armv9.2-a" "armv8.8-a" ] ++ inferiors."armv9.2-a" ++ inferiors."armv8.8-a";
     mips32         = [ ];
     loongson2f     = [ ];
+    riscv64-g      = [ ];
+    riscv64-gc     = [ "riscv64-g" ] ++ inferiors.riscv64-g;
+    riscv64-gcv    = [ "riscv64-gc" ] ++ inferiors.riscv64-gc;
   };
 
   predicates = let
