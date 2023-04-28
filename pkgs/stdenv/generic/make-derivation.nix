@@ -168,8 +168,8 @@ let
 let
   # TODO(@oxij, @Ericson2314): This is here to keep the old semantics, remove when
   # no package has `doCheck = true`.
-  doCheck' = doCheck && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
-  doInstallCheck' = doInstallCheck && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
+  doCheck' = (config.doCheckByDefault or false) && doCheck && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
+  doInstallCheck' = (config.doCheckByDefault or false) && doInstallCheck && stdenv.buildPlatform.canExecute stdenv.hostPlatform;
 
   separateDebugInfo' = separateDebugInfo && stdenv.hostPlatform.isLinux;
   outputs' = outputs ++ lib.optional separateDebugInfo' "debug";
