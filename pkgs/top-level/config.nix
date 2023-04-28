@@ -61,6 +61,7 @@ let
 
     contentAddressedByDefault = mkMassRebuild {
       feature = "set `__contentAddressed` to true by default";
+      default = true;
     };
 
     allowAliases = mkOption {
