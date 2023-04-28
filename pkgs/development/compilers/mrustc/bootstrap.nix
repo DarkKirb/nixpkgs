@@ -143,7 +143,7 @@ stdenv.mkDerivation rec {
     '';
     maintainers = with maintainers; [ progval r-burns ];
     license = with licenses; [ mit asl20 ];
-    platforms = [ "x86_64-linux" ];
+    platforms = [ "x86_64-linux" "aarch64-linux" ];
   };
 }
 

@@ -25,7 +25,7 @@ let
       changelog = "https://github.com/rust-secure-code/cargo-auditable/blob/v${version}/cargo-auditable/CHANGELOG.md";
       license = with licenses; [ mit /* or */ asl20 ];
       maintainers = with maintainers; [ figsoda ];
-      broken = stdenv.hostPlatform != stdenv.buildPlatform;
+      broken = (stdenv.hostPlatform != stdenv.buildPlatform) || versionOlder rustc.version "1.56";
     };
   };
 

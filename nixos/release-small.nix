@@ -39,6 +39,8 @@ in {
       stdenv
       subversion
       vim
+      rustc
+      cargo
       ;
   };
 }
