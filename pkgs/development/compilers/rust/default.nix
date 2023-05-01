@@ -42,7 +42,17 @@ in
   # bootstrapping.
   packages = {
     stable = lib.makeScope newScope (self: let
-      bootRustPlatform = makeRustPlatform bootstrapRustPackages;
+      crossHostPkgs = (import ../../../.. {
+        hostPlatform.system = "x86_64-linux";
+        crossPlatform = stdenv.hostPlatform;
+      });
+      supportedForBootstrap = [
+        "x86_64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+      bootstrapRustPackages' = if builtins.elem stdenv.hostPlatform.system supportedForBootstrap then bootstrapRustPackages else crossHostPkgs.rustPackages;
+      bootRustPlatform = makeRustPlatform bootstrapRustPackages';
     in {
       # Packages suitable for build-time, e.g. `build.rs`-type stuff.
       buildRustPackages = (selectRustPackage buildPackages).packages.stable;
