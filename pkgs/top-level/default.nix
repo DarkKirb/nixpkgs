@@ -18,7 +18,7 @@
 
 { # The system packages will be built on. See the manual for the
   # subtle division of labor between these two `*System`s and the three
-  # `*Platform`s.
+  # `*loPlatform`s.
   localSystem
 
 , # The system packages will ultimately be run on.

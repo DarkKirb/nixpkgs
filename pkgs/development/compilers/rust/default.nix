@@ -43,8 +43,8 @@ in
   packages = {
     stable = lib.makeScope newScope (self: let
       crossHostPkgs = (import ../../../.. {
-        hostPlatform.system = "x86_64-linux";
-        crossPlatform = stdenv.hostPlatform;
+        system = "x86_64-linux";
+        crossSystem = stdenv.hostPlatform.system;
       });
       supportedForBootstrap = [
         "x86_64-linux"
