@@ -35,7 +35,7 @@ import ./default.nix {
   # Note: the version MUST be one version prior to the version we're
   # building
   bootstrapRustPackages = {
-    inherit (buildPackages.rust_1_66.packages.stable) rustc cargo;
+    inherit (buildPackages.rust_1_67.packages.stable) rustc cargo;
   };
 
   selectRustPackage = pkgs: pkgs.rust_1_67;
