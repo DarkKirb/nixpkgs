@@ -6,6 +6,7 @@
 , mescc-tools
 , mescc-tools-extra
 , version
+, platforms
 }:
 
 # Once mescc-tools-extra is available we can install kaem at /bin/kaem
@@ -46,6 +47,6 @@ derivationWithMeta {
     homepage = "https://github.com/oriansj/mescc-tools";
     license = licenses.gpl3Plus;
     maintainers = with maintainers; [ emilytrau ];
-    platforms = [ "i686-linux" ];
+    inherit platforms;
   };
 }

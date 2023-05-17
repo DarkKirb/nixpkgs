@@ -2,13 +2,14 @@
 , config
 , buildPlatform
 , hostPlatform
+, targetPlatform
 }:
 
 lib.makeScope
   # Prevent using top-level attrs to protect against introducing dependency on
   # non-bootstrap packages by mistake. Any top-level inputs must be explicitly
   # declared here.
-  (extra: lib.callPackageWith ({ inherit lib config buildPlatform hostPlatform; } // extra))
+  (extra: lib.callPackageWith ({ inherit lib config buildPlatform hostPlatform targetPlatform; } // extra))
   (self: with self; {
 
     gnupatch = callPackage ./gnupatch { tinycc = tinycc-mes; };

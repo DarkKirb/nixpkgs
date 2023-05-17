@@ -27093,7 +27093,7 @@ with pkgs;
   metastore = callPackage ../os-specific/linux/metastore { };
 
   minimal-bootstrap = recurseIntoAttrs (import ../os-specific/linux/minimal-bootstrap {
-    inherit (stdenv) buildPlatform hostPlatform;
+    inherit (stdenv) buildPlatform hostPlatform targetPlatform;
     inherit lib config;
   });
 
