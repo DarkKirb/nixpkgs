@@ -4,13 +4,14 @@
 , hostPlatform
 , fetchurl
 , checkMeta
+, targetPlatform
 }:
 
 lib.makeScope
   # Prevent using top-level attrs to protect against introducing dependency on
   # non-bootstrap packages by mistake. Any top-level inputs must be explicitly
   # declared here.
-  (extra: lib.callPackageWith ({ inherit lib config buildPlatform hostPlatform fetchurl checkMeta; } // extra))
+  (extra: lib.callPackageWith ({ inherit lib config buildPlatform hostPlatform fetchurl checkMeta targetPlatform; } // extra))
   (self: with self; {
 
     bash_2_05 = callPackage ./bash/2.nix { tinycc = tinycc-mes; };
@@ -51,6 +52,13 @@ lib.makeScope
       tinycc = tinycc-mes;
     };
 
+    heirloom = callPackage ./heirloom {
+      bash = bash_2_05;
+      tinycc = tinycc-mes;
+    };
+
+    heirloom-devtools = callPackage ./heirloom-devtools { tinycc = tinycc-mes; };
+
     ln-boot = callPackage ./ln-boot { };
 
     mes = lib.recurseIntoAttrs (callPackage ./mes { });
@@ -64,6 +72,7 @@ lib.makeScope
     tinycc-mes = lib.recurseIntoAttrs (callPackage ./tinycc/mes.nix { });
 
     inherit (callPackage ./utils.nix { }) derivationWithMeta writeTextFile writeText;
+    live-bootstrap = callPackage ./live-bootstrap { };
 
     test = kaem.runCommand "minimal-bootstrap-test" {} ''
       echo ${bash_2_05.tests.get-version}
@@ -73,6 +82,7 @@ lib.makeScope
       echo ${gnused.tests.get-version}
       echo ${gnutar.tests.get-version}
       echo ${gzip.tests.get-version}
+      echo ${heirloom.tests.get-version}
       echo ${mes.compiler.tests.get-version}
       echo ${tinycc-mes.compiler.tests.chain}
       mkdir ''${out}
