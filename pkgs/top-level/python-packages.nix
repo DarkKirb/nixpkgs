@@ -2528,6 +2528,8 @@ self: super: with self; {
 
   cogapp = callPackage ../development/python-modules/cogapp { };
 
+  coiled = callPackage ../development/python-modules/coiled { };
+
   coinmetrics-api-client = callPackage ../development/python-modules/coinmetrics-api-client { };
 
   colanderalchemy = callPackage ../development/python-modules/colanderalchemy { };
@@ -5307,6 +5309,8 @@ self: super: with self; {
 
   gidgethub = callPackage ../development/python-modules/gidgethub { };
 
+  gilknocker = callPackage ../development/python-modules/gilknocker { };
+
   gin-config = callPackage ../development/python-modules/gin-config { };
 
   gios = callPackage ../development/python-modules/gios { };
@@ -5767,6 +5771,8 @@ self: super: with self; {
   };
 
   guidance = callPackage ../development/python-modules/guidance { };
+
+  guidance-stitch = callPackage ../development/python-modules/guidance-stitch { };
 
   guidata = callPackage ../development/python-modules/guidata { };
 
@@ -7704,6 +7710,8 @@ self: super: with self; {
   llfuse = callPackage ../development/python-modules/llfuse {
     inherit (pkgs) fuse;
   };
+
+  llguidance = callPackage ../development/python-modules/llguidance { };
 
   llm = callPackage ../development/python-modules/llm { };
 
@@ -11019,6 +11027,10 @@ self: super: with self; {
   pyzbar = callPackage ../development/python-modules/pyzbar { };
 
   pyzipper = callPackage ../development/python-modules/pyzipper { };
+
+  pyzstd = callPackage ../development/python-modules/pyzstd {
+    zstd-c = pkgs.zstd;
+  };
 
   plac = callPackage ../development/python-modules/plac { };
 
